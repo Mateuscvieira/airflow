@@ -74,21 +74,21 @@ class HookLineageCollector(LoggingMixin):
             return Dataset(uri=uri, extra=dataset_extra)
 
         if not scheme:
-            self.log.debug(
+            self.log.error(
                 "Missing required parameter: either 'uri' or 'scheme' must be provided to create a Dataset."
             )
             return None
 
         dataset_factory = ProvidersManager().dataset_factories.get(scheme)
         if not dataset_factory:
-            self.log.debug("Unsupported scheme: %s. Please provide a valid URI to create a Dataset.", scheme)
+            self.log.error("Unsupported scheme: %s. Please provide a valid URI to create a Dataset.", scheme)
             return None
 
         dataset_kwargs = dataset_kwargs or {}
         try:
             return dataset_factory(**dataset_kwargs, extra=dataset_extra)
         except Exception as e:
-            self.log.debug("Failed to create dataset. Skipping. Error: %s", e)
+            self.log.error("Failed to create dataset. Skipping. Error: %s", e)
             return None
 
     def add_input_dataset(
@@ -139,10 +139,10 @@ class NoOpCollector(HookLineageCollector):
     It is used when you want to disable lineage collection.
     """
 
-    def add_input_dataset(self, *_):
+    def add_input_dataset(self, *_, **__):
         pass
 
-    def add_output_dataset(self, *_):
+    def add_output_dataset(self, *_, **__):
         pass
 
     @property
