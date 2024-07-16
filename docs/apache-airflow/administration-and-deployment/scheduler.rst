@@ -181,12 +181,12 @@ different processes. In order to fine-tune your scheduler, you need to include a
       (Hint! It should not. See :ref:`best_practices/top_level_code`)
 
 * The scheduler configuration
-   * How many schedulers you have
-   * How many parsing processes you have in your scheduler
-   * How much time scheduler waits between re-parsing of the same DAG (it happens continuously)
-   * How many task instances scheduler processes in one loop
-   * How many new DAG runs should be created/scheduled per loop
-   * How often the scheduler should perform cleanup and check for orphaned tasks/adopting them
+   * how many schedulers you have
+   * how many parsing processes you have in your scheduler
+   * how much time scheduler waits between re-parsing of the same DAG (it happens continuously)
+   * how many task instances scheduler processes in one loop
+   * how many new DAG runs should be created/scheduled per loop
+   * how often the scheduler should perform cleanup and check for orphaned tasks/adopting them
 
 In order to perform fine-tuning, it's good to understand how Scheduler works under-the-hood.
 You can take a look at the Airflow Summit 2021 talk
